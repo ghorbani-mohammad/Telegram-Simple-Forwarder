@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  bot_db:
+    container_name: bot_db
+    image: mdillon/postgis:11
+    restart: unless-stopped
+
+  bot_api:
+    container_name: bot_api
+    image: registry.gitlab.com/ghorbani/bot:latest
+    restart: unless-stopped
+    depends_on:
+      - bot_db
+    volumes:
+      - /static:/app/bot/static
+    ports:
+      - "127.0.0.1:9052:80"
+
+  bot_celery:
+    container_name: bot_celery
+    image: registry.gitlab.com/ghorbani/bot:latest
+    working_dir: /app/bot
+    command: ["celery", "-A", "bot", "worker", "-l", "info"]
+    restart: unless-stopped
+    depends_on:
+      - bot_db
+      - bot_redis
+
+  bot_beat:
+    container_name: bot_beat
+    image: registry.gitlab.com/ghorbani/bot:latest
+    working_dir: /app/bot
+    command: ["celery", "-A", "bot", "beat", "-l", "info", "--pidfile=/tmp/celeryd.pid"]
+    restart: unless-stopped
+    depends_on:
+      - bot_db
+      - bot_redis
+
+  bot_redis:
+    container_name : bot_redis
+    image: redis:5.0.8
+    restart: unless-stopped
