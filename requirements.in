@@ -16,3 +16,4 @@ redis<3.5
 requests
 unidecode
 Pillow
+telethon
