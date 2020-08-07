@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Channel, Bot
+from .models import Channel, Broker
 
 @admin.register(Channel)
 class ChannelAdmin(admin.ModelAdmin):
@@ -8,7 +8,7 @@ class ChannelAdmin(admin.ModelAdmin):
     search_fields = ['name', 'username']
 
 
-@admin.register(Bot)
-class BotAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'token')
+@admin.register(Broker)
+class BrokerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
     search_fields = ['name']

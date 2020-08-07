@@ -15,10 +15,10 @@ class Channel(BaseModel):
         return self.name
 
 
-class Bot(BaseModel):
+class Broker(BaseModel):
     name = models.CharField(blank=True, max_length=100, null=True)
-    token = models.CharField(max_length=100)
+    source_channels = models.ManyToManyField(Channel, related_name='source_bots', related_query_name='source_bot')
+    destination_channels = models.ManyToManyField(Channel, related_name='destination_bots', related_query_name='destination_bot')
 
     def __str__(self):
         return self.name
-
