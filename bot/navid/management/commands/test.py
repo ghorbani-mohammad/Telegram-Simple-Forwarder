@@ -23,11 +23,11 @@ class Command(BaseCommand):
             return bot.source_channels.all()
 
 
-        @client.on(events.NewMessage)
+        brokers = Broker.objects.all()
+        @client.on(events.NewMessage(incoming=True))
         async def my_event_handler(event):
             chat = await event.get_chat()
             sender = await event.get_sender()
-            brokers = Broker.objects.all()
             for broker in brokers:
                 for source in broker.source_channels.all():
                     if source.username == sender.username:
