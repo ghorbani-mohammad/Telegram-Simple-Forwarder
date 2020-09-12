@@ -24,10 +24,16 @@ class Command(BaseCommand):
 
 
         brokers = Broker.objects.all()
+        sources = []
+        for broker in brokers:
+            for source in broker.source_channels.all():
+                sources.append(source.username)
         @client.on(events.NewMessage(incoming=True))
         async def my_event_handler(event):
             chat = await event.get_chat()
             sender = await event.get_sender()
+            if sender.username not in sources:
+                return
             for broker in brokers:
                 for source in broker.source_channels.all():
                     if source.username == sender.username:

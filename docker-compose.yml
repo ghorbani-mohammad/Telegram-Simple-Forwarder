@@ -2,17 +2,17 @@ version: '3'
 
 services:
 
-  bot_db:
-    container_name: bot_db
-    image: mdillon/postgis:11
-    restart: unless-stopped
+  # bot_db:
+  #   container_name: bot_db
+  #   image: mdillon/postgis:11
+  #   restart: unless-stopped
 
   bot_api:
     container_name: bot_api
     build: .
     restart: unless-stopped
-    depends_on:
-      - bot_db
+    # depends_on:
+    #   - bot_db
     volumes:
       - .:/app
     ports:
@@ -45,7 +45,7 @@ services:
   #     - bot_db
   #     - bot_redis
 
-  bot_redis:
-    container_name : bot_redis
-    image: redis:5.0.8
-    restart: unless-stopped
+  # bot_redis:
+  #   container_name : bot_redis
+  #   image: redis:5.0.8
+  #   restart: unless-stopped
