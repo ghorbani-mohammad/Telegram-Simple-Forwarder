@@ -28,7 +28,7 @@ class Command(BaseCommand):
         for broker in brokers:
             for source in broker.source_channels.all():
                 sources.append(source.username)
-        @client.on(events.NewMessage(incoming=True))
+        @client.on(events.NewMessage(incoming=True, chats=sources))
         async def my_event_handler(event):
             chat = await event.get_chat()
             sender = await event.get_sender()
