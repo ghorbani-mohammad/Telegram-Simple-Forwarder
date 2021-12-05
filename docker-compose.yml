@@ -1,18 +1,10 @@
 version: '3'
 
 services:
-
-  # bot_db:
-  #   container_name: bot_db
-  #   image: mdillon/postgis:11
-  #   restart: unless-stopped
-
   bot_api:
     container_name: bot_api
     build: .
     restart: unless-stopped
-    # depends_on:
-    #   - bot_db
     volumes:
       - .:/app
     ports:
@@ -20,32 +12,3 @@ services:
     command: ["python", "/app/bot/manage.py", "runserver", "0:80"]
     environment:
       DEBUG: 'True'
-
-  # bot_celery:
-  #   container_name: bot_celery
-  #   build: .
-  #   working_dir: /app/bot
-  #   command: ["celery", "-A", "bot", "worker", "-l", "info"]
-  #   restart: unless-stopped
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - bot_db
-  #     - bot_redis
-
-  # bot_beat:
-  #   container_name: bot_beat
-  #   build: .
-  #   working_dir: /app/bot
-  #   command: ["celery", "-A", "bot", "beat", "-l", "info"]
-  #   restart: unless-stopped
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - bot_db
-  #     - bot_redis
-
-  # bot_redis:
-  #   container_name : bot_redis
-  #   image: redis:5.0.8
-  #   restart: unless-stopped
