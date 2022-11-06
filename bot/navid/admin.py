@@ -5,7 +5,11 @@ from .models import Channel, Broker
 
 @admin.register(Channel)
 class ChannelAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "username")
+    list_display = (
+        "id",
+        "name",
+        "username",
+    )
     search_fields = (
         "name",
         "username",
