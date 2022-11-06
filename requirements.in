@@ -8,12 +8,12 @@ djangorestframework
 envparse
 gunicorn
 ipython
+Pillow
 pip-tools
 psycopg2-binary
 pyaes
 pycryptodome
 redis<3.5
 requests
-unidecode
-Pillow
 telethon
+unidecode
