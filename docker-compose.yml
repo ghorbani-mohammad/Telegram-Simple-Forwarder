@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   bot_api:
     container_name: bot_api
