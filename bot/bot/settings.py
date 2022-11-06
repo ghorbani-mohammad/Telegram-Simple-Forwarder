@@ -2,8 +2,8 @@ import os
 
 DEBUG = True
 ALLOWED_HOSTS = ["88.198.171.34", "localhost"]
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "n76e8os4x0-#993gv+(#v^^ufql_#_)&$67hi8es55g0*drik8"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Application definition
