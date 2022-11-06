@@ -12,4 +12,4 @@ class ChannelAdmin(admin.ModelAdmin):
 @admin.register(Broker)
 class BrokerAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
-    search_fields = ["name"]
+    search_fields = ("name",)
