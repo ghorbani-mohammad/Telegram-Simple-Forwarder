@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   binutils \
   libproj-dev \
   gdal-bin \
-  python-gdal \
+  python3-gdal \
  && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
