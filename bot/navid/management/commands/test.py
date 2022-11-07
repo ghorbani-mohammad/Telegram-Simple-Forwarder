@@ -1,6 +1,8 @@
 import logging, pytz, datetime
-logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=logging.WARNING)
+
+logging.basicConfig(
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
+)
 from asgiref.sync import sync_to_async
 
 from django.utils import timezone
@@ -9,14 +11,15 @@ from telethon import TelegramClient, events, sync
 
 from ...models import Broker
 
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        print('Bot started....')
-        tz = pytz.timezone('Asia/Tehran')
+        print("Bot started....")
+        tz = pytz.timezone("Asia/Tehran")
 
         api_id = 1472324
-        api_hash = 'afb6585ab2cc8d7fc34a0687c5c14f18'
-        client = TelegramClient('navid', api_id, api_hash)
+        api_hash = "afb6585ab2cc8d7fc34a0687c5c14f18"
+        client = TelegramClient("navid", api_id, api_hash)
 
         # api_id = 1446710
         # api_hash = '58a91c8d8d9704beb534a5327d0c25c8'
@@ -24,7 +27,6 @@ class Command(BaseCommand):
         # client.connect()
         # client.send_code_request('00989357518003')
         # client.sign_in('00989357518003', 19559)
-
 
         brokers = Broker.objects.all()
         sources = []
@@ -34,6 +36,7 @@ class Command(BaseCommand):
         print(sources)
 
         client.start()
+
         @client.on(events.NewMessage(incoming=True, chats=sources))
         async def my_event_handler(event):
             chat = await event.get_chat()
@@ -42,17 +45,25 @@ class Command(BaseCommand):
                 for source in broker.source_channels.all():
                     if source.username == sender.username:
                         print()
-                        print('broker name is: {}'.format(broker.name))
-                        print('source cahnnel name is: {}'.format(source.username))
+                        print("broker name is: {}".format(broker.name))
+                        print("source cahnnel name is: {}".format(source.username))
                         for dest in broker.destination_channels.all():
                             if source.username == dest.username:
                                 continue
                             try:
-                                print('msg forw to dest cahnnel: {} at time: {}'.format(dest.username, 
-                                    datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")))
+                                print(
+                                    "msg forw to dest cahnnel: {} at time: {}".format(
+                                        dest.username,
+                                        datetime.datetime.now(tz).strftime(
+                                            "%Y-%m-%d %H:%M:%S"
+                                        ),
+                                    )
+                                )
                                 await event.forward_to(dest.username)
                             except:
-                                print('error, dest channel is: {}'.format(dest.username))
+                                print(
+                                    "error, dest channel is: {}".format(dest.username)
+                                )
                                 pass
-        client.run_until_disconnected()
 
+        client.run_until_disconnected()
