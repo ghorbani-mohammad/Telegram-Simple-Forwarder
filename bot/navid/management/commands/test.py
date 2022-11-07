@@ -45,7 +45,7 @@ class Command(BaseCommand):
                 for source in broker.source_channels.all():
                     if source.username == sender.username:
                         print()
-                        print("broker name is: {}".format(broker.name))
+                        print(f"broker name is: {broker.name}")
                         print("source cahnnel name is: {}".format(source.username))
                         for dest in broker.destination_channels.all():
                             if source.username == dest.username:
