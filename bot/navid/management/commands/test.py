@@ -52,12 +52,7 @@ class Command(BaseCommand):
                                 continue
                             try:
                                 print(
-                                    "msg forw to dest cahnnel: {} at time: {}".format(
-                                        dest.username,
-                                        datetime.datetime.now(tz).strftime(
-                                            "%Y-%m-%d %H:%M:%S"
-                                        ),
-                                    )
+                                    f"msg forw to dest cahnnel: {dest.username} at time: {datetime.datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')}"
                                 )
                                 await event.forward_to(dest.username)
                             except:
