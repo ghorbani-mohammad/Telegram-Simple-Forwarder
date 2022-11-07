@@ -21,7 +21,6 @@ class Command(BaseCommand):
         api_hash = "afb6585ab2cc8d7fc34a0687c5c14f18"
         client = TelegramClient("navid", api_id, api_hash)
 
-        # client = TelegramClient('mobina3', api_id, api_hash)
         # client.connect()
         # client.send_code_request('00989357518003')
         # client.sign_in('00989357518003', 19559)
