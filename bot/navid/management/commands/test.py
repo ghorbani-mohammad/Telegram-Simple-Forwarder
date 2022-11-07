@@ -61,9 +61,7 @@ class Command(BaseCommand):
                                 )
                                 await event.forward_to(dest.username)
                             except:
-                                print(
-                                    "error, dest channel is: {}".format(dest.username)
-                                )
+                                print(f"error, dest channel is: {dest.username}")
                                 pass
 
         client.run_until_disconnected()
