@@ -6,8 +6,6 @@ SECRET_KEY = "n76e8os4x0-#993gv+(#v^^ufql_#_)&$67hi8es55g0*drik8"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
