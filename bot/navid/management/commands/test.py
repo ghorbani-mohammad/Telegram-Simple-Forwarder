@@ -26,7 +26,6 @@ class Command(BaseCommand):
         for broker in brokers:
             for source in broker.source_channels.all():
                 sources.append(source.username)
-        print(sources)
 
         client.start()
 
