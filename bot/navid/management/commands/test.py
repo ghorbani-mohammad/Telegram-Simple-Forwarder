@@ -3,8 +3,8 @@ import logging, pytz, datetime
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
 )
+from telethon import TelegramClient, events
 from django.core.management.base import BaseCommand
-from telethon import TelegramClient, events, sync
 
 from ...models import Broker
 
