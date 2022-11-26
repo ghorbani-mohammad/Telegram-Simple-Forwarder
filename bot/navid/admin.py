@@ -10,10 +10,7 @@ class ChannelAdmin(admin.ModelAdmin):
         "name",
         "username",
     )
-    search_fields = (
-        "name",
-        "username",
-    )
+    search_fields = ("name", "username")
 
 
 @admin.register(Broker)
