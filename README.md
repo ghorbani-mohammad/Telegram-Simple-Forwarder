@@ -1,6 +1,6 @@
 ### Information
 
-- Server: **keylid1**
+- Server: **DigitalOcean**
 - Port: 9052
 - Server path: `/`
 - Doc Link:
@@ -10,4 +10,4 @@
     error:  /var/log/nginx/api-bot_error.log
     ```
 - Links:
-    * [beshkaf.tika-team.ir](https://beshkaf.tika-team.ir)
+    * [bot.m-gh.com](https://bot.m-gh.com)
