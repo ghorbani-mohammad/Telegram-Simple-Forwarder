@@ -1,7 +1,6 @@
 #!/bin/bash
 
 PROJECT_NAME='bot'
-SERVER_NAME='keylid1'
 SERVER_PATH='/'
 
 API_CONTAINER_NAME=${PROJECT_NAME}'_api'
@@ -85,17 +84,9 @@ function remove_unused_image() {
     docker image prune -af
 }
 
-function scp_conf() {
-    echo -e "\n ... copy conf files to server ... \n"
-    scp ${COMPOSE_FILE} ${NGINX_FILE} mng-api.sh doc.json .docpasswd ${SERVER_NAME}:${SERVER_PATH}
-}
-
 case $1 in
 scp_conf)
     scp_conf
-;;
-up_remote)
-    ssh -t ${SERVER_NAME} "cd ${SERVER_PATH}; ./mng-api.sh up"
 ;;
 up)
     pull
